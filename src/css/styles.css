@@ -1,5 +1,20 @@
+:root {
+  --time: 250ms;
+  --cubic: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 * {
   box-sizing: border-box;
+}
+
+ul,
+button {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
 }
 
 body {
@@ -9,22 +24,112 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #fafafa;
   color: #212121;
+  font-size: clamp(1.2rem, 2.5vw, 2.1rem);
   line-height: 1.5;
 }
 
 #search-box {
   font: inherit;
   padding: 8px;
-  max-width: 320px;
+  font-size: clamp(1.2rem, 2.5vw, 2.1rem);
+  max-width: 400px;
   margin-bottom: 16px;
+  box-shadow: 0.1rem 0.1rem 0.21rem 0.1rem rgba(33, 33, 33, 0.5);
+  border-radius: 5px;
+
+  transition: var(--time) var(--cubic);
+  transition-property: box-shadow;
 }
 
-.country__name {
-  font-size: 2rem;
+#search-box:focus {
+  box-shadow: 0.2rem 0.2rem 0.41rem 0.1rem rgba(33, 150, 243, 0.5);
 }
 
 .country__image {
-  width: 25px;
+  width: clamp(2.3rem, 3vw, 3rem);
   height: auto;
-  margin-right: 5px;
+  margin: auto 0.5rem auto 0;
+}
+
+.country__image--big {
+  width: clamp(3rem, 3vw, 4rem);
+}
+
+.country-search {
+  padding: 40px;
+}
+
+.country-list,
+.country-info {
+  padding: 21px;
+  box-shadow: 0.21rem 0.21rem 0.21rem 0.21rem rgba(33, 33, 33, 0.21);
+
+  max-width: clamp(200px, 80%, 1000px);
+  border-radius: 5px;
+}
+
+.country__heading-wrapper,
+.country__item {
+  display: flex;
+  align-items: center;
+}
+
+.country__item,
+.country__heading-wrapper {
+  position: relative;
+}
+
+.country__item:not(:last-child)::after,
+.country__heading-wrapper::after {
+  content: '';
+  position: absolute;
+  width: 99%;
+
+  border-radius: 21px;
+  background-color: rgba(33, 33, 33, 0.05);
+}
+
+.country__item::after {
+  top: 100%;
+  left: 0;
+  height: 1px;
+}
+
+.country__heading-wrapper::after {
+  top: calc(100% + 0.21rem);
+  left: 0.5%;
+  height: 2px;
+}
+
+.is-hidden {
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0.01;
+  padding: 0;
+  box-shadow: none;
+}
+
+.country-info,
+.country-list {
+  transition: var(--time) var(--cubic);
+  transition-property: opacity, visibility;
+}
+
+.country__btn {
+  display: flex;
+  align-items: baseline;
+  appearance: none;
+  padding: 3px 5px;
+
+  font-family: inherit;
+  font-size: clamp(2rem, 3vw, 2.5rem);
+
+  background: none;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.country__btn:focus {
+  box-shadow: 0.1rem 0.1rem 0.21rem 0.1rem rgba(33, 150, 243, 0.5);
 }
